@@ -1,4 +1,4 @@
-export PATH="$PATH:/Users/2015/g/gbuclin/ft_bin"
+export PATH="$PATH:~/ft_bin"
 
 alias src="source ~/.myzshrc"
 alias config="vim ~/.myzshrc"
