@@ -1,6 +1,6 @@
 export PATH="$PATH:$HOME/ft_bin"
 
-alias src="source ~/.myzshrc"
+alias src="source ~/.zshrc"
 alias config="vim ~/.myzshrc"
 alias fls="ft_ls"
 alias fla="ft_ls -aG"
@@ -17,3 +17,4 @@ alias gmerge="git merge"
 alias gout="git checkout"
 alias gdiff="git diff"
 alias norme="norminette **/*.[ch] | grep -v 'Norme' -B1"
+alias atom="~/Downloads/Atom.app/Contents/MacOS/Atom"
