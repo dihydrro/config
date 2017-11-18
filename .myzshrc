@@ -1,6 +1,6 @@
 export PATH="$PATH:$HOME/ft_bin:/usr/local/go/bin"
 
-alias src="source ~/.myzshrc"
+alias src="source ~/.zshrc"
 alias config="vim ~/.myzshrc"
 alias fls="ft_ls"
 alias fla="ft_ls -aG"
