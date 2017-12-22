@@ -1,11 +1,21 @@
-export PATH="$PATH:$HOME/ft_bin:/usr/local/go/bin"
+# myzshrc aliases
 
-alias src="source ~/.zshrc"
-alias config="vim ~/.myzshrc"
+## open myzshrc
+alias config="vim ~/.myconf/.myzshrc"
+## update myzshrc change
+alias src="source ~/.myconf/.myzshrc"
+
+
+# my ls config
+export PATH="$PATH:$HOME/.myconf/ft_bin"
+## my ls aliases
 alias fls="ft_ls"
-alias fla="ft_ls -aG"
-alias fl="ft_ls -lG"
-alias fll="ft_ls -laG"
+alias fla="fls -aG"
+alias fl="fls -lG"
+alias fll="fls -laG"
+
+
+# git aliases
 alias gcln="git clone"
 alias gst="git status"
 alias gdd="git add"
@@ -21,9 +31,72 @@ alias grbsc="git rebase --continue"
 alias grbsa="git rebase --abort"
 alias grbss="git rebase --skip"
 alias glg="git log"
+
+
+# 42 norme alias
 alias norme="norminette **/*.[ch] | grep -v 'Norme' -B1"
+
+
+# docker alias
 alias dcmp="docker-compose"
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+# prompt config
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+
+setopt prompt_subst
+
+function prompt_dihydrro_precmd {
+	vcs_info
+}
+
+function prompt_dihydrro_setup {
+	setopt LOCAL_OPTIONS
+		unsetopt XTRACE KSH_ARRAYS
+		prompt_opts=(cr percent sp subst)
+
+# Load required functions.
+		autoload -Uz add-zsh-hook
+		autoload -Uz vcs_info
+
+# Add hook for calling vcs_info before each command.
+		add-zsh-hook precmd prompt_dihydrro_precmd
+
+# Set vcs_info parameters.
+		zstyle ':vcs_info:*' enable bzr git hg svn
+		zstyle ':vcs_info:*' check-for-changes true
+		zstyle ':vcs_info:*' formats ' - %F{green}[%b%F{green}]%f'
+
+# Define prompts.
+		PROMPT='%F{red}%n@%m%f %F{yellow}%~%f${vcs_info_msg_0_} %# '
+		RPROMPT='%F{red}%T%f %F{yellow}-%f %F{green}(%?)%f'
+}
+
+prompt_dihydrro_setup "$@"
+
+
+
+# extract function
+## extract *filename*
+## will use the right extract command depend on the file extension
+extract () {
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)   tar xjf $1     ;;
+			*.tar.gz)    tar xzf $1     ;;
+			*.bz2)       bunzip2 $1     ;;
+			*.rar)       unrar e $1     ;;
+			*.gz)        gunzip $1      ;;
+			*.tar)       tar xf $1      ;;
+			*.tbz2)      tar xjf $1     ;;
+			*.tgz)       tar xzf $1     ;;
+			*.zip)       unzip $1       ;;
+			*.Z)         uncompress $1  ;;
+			*.7z)        7z x $1        ;;
+			*)	echo "'$1' cannot be extracted via extract()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
