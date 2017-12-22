@@ -1,13 +1,15 @@
 # myzshrc aliases
 
+DIHY_PATH="$HOME/.dihy_config"
+
 ## open myzshrc
-alias config="vim ~/.myconf/.myzshrc"
+alias config="vim $DIHY_PATH/.myzshrc"
 ## update myzshrc change
-alias src="source ~/.myconf/.myzshrc"
+alias src="source $DIHY_PATH/.myzshrc"
 
 
 # my ls config
-export PATH="$PATH:$HOME/.myconf/ft_bin"
+export PATH="$PATH:$DIHY_PATH/ft_bin"
 ## my ls aliases
 if [ `uname` = "Linux" ]; then
 	alias fls="ft_ls_linux -G"
