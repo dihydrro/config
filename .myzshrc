@@ -9,10 +9,15 @@ alias src="source ~/.myconf/.myzshrc"
 # my ls config
 export PATH="$PATH:$HOME/.myconf/ft_bin"
 ## my ls aliases
-alias fls="ft_ls"
-alias fla="fls -aG"
-alias fl="fls -lG"
-alias fll="fls -laG"
+if [ `uname` = "Linux" ]; then
+	alias fls="ft_ls_linux -G"
+else
+	alias fls="ft_ls_darwin -G"
+fi
+
+alias fla="fls -a"
+alias fl="fls -la"
+alias fll="fls -l"
 
 
 # git aliases
