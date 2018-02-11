@@ -31,6 +31,7 @@ alias gcm="git commit"
 alias gpsh="git push"
 alias gpll="git pull"
 alias gmrg="git merge"
+alias gmrga="git merge --abort"
 alias gt="git checkout"
 alias gdff="git diff"
 alias grbs="git rebase"
@@ -38,6 +39,9 @@ alias grbsc="git rebase --continue"
 alias grbsa="git rebase --abort"
 alias grbss="git rebase --skip"
 alias glg="git log"
+alias gl="git log --oneline --abbrev-commit --all --graph --decorate --color"
+alias gft="git fetch"
+alias gbr="git branch"
 
 
 # 42 norme alias
