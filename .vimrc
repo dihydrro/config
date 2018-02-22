@@ -1,52 +1,106 @@
 " -----------------------------------------------------------------------
 " -----------------------------------------------------------------------
 "
-"			.vimrc fgiraud / gbuclin
+"		by Dihydrro
 "
 " -----------------------------------------------------------------------
 " -----------------------------------------------------------------------
 
+" install pathogen
+execute pathogen#infect()
+execute pathogen#helptags()
+
+let mapleader = ","
+
+" disable move the cursor left/right to move to the previous/next line
 set whichwrap=<,>
 set nocompatible
 set showmode
 set showcmd
+set title
 
-" -----------------------------------------------------------------------
-"				when filetype c
-" -----------------------------------------------------------------------
+" to save ctrl-s
+nnoremap <leader>s :w<return>
 
-autocmd filetype c imap ( ()<left>
-autocmd filetype c imap { {<return>}<up><return>
-autocmd filetype c imap [ []<left>
-autocmd filetype c imap main<tab> int<tab><tab>main(int ac, char **av<right><return>{
+" start search will typing
+set incsearch
+set hlsearch
+set smartcase
 
-" -----------------------------------------------------------------------
-"		line and column + line at the bot (status line)
-" -----------------------------------------------------------------------
+" use <TAB> invoke completion in command line
+set wildmenu
+
+" the line is cut if to big for the screen
+set wrap
+
+" deal with tabulation for most file
+set shiftwidth=2
+set shiftround
+set tabstop=2
+set expandtab
+set smarttab
+
+set foldmethod=indent
+
+nnoremap - ddp
+nnoremap + dd<up>P
+nnoremap "<space> bi"<esc>ea"<esc>l
+nnoremap '<space> bi'<esc>ea'<esc>l
+nnoremap <leader>U bveU<esc>
+nnoremap <leader>u bveu<esc>
+
+inoremap kj <esc>
+inoremap ( ()<esc>i
+inoremap { {<return>}<esc>O
+inoremap [ []<esc>i
+inoremap < <><esc>i
+inoremap ' ''<esc>i
+inoremap " ""<esc>i
+
+" autocompletion
+imap iff<tab> if<space>(
+imap el<tab> else<space>(
+imap eli<tab> else<space>if<space>(
+imap whi<tab> while<space>(
+
+" comment completion
+autocmd filetype c :nnoremap <leader>c I/*<space><esc>$a<space>*/<esc>
+autocmd filetype html :nnoremap <leader>c I<!--<esc>$a--><esc>
+autocmd filetype css :nnoremap <leader>c I/*<space><esc>$a*/<esc>
+autocmd filetype javascript :nnoremap <leader>c I/*<space><esc>$a*/<esc>
+autocmd filetype python :nnoremap <leader>c I#<space><esc>
+
+" c autocompletion
+autocmd filetype c :imap main<tab> int<tab><tab>main(int ac, char **av<esc>o{
+autocmd filetype c :inoremap ret<tab> return<space>();<left><left>
+
+" deal with tabulation for c file
+autocmd filetype c :set shiftwidth=4
+autocmd filetype c :set tabstop=4
+autocmd filetype c :set noexpandtab
+
+autocmd BufRead * normal zR
+autocmd BufWritePre,BufRead *.[html|css|c|ts|js] normal gg=G
+
+autocmd filetype [html|javascript] :setlocal nowrap
 
 set number
+" set relativenumber in insert mode and norelativenumber for other
 autocmd InsertEnter * :set relativenumber
 autocmd InsertLeave * :set norelativenumber
 autocmd InsertLeave * :set number
+
 set ruler
 set cursorline
-hi CursorLine term=bold cterm=bold guibg=Grey40
 set laststatus=2
-set statusline=filename:\ \%F\ %y\ %=\ line\ %l\ column\ %c\
+set statusline=filename:\ \%F\ %y\ %=\ line\ %l/%L\ column\ %c
 
-" -----------------------------------------------------------------------
-"			integration :
-"				- mouse
-"				- indent
-" -----------------------------------------------------------------------
-
-set mouse=a
 set autoindent
 set smartindent
 
-" -----------------------------------------------------------------------
-"				Colors :
-"			- default colors
-" -----------------------------------------------------------------------
+" ===================== UNDO FILE =====================
 
-syntax on
+set undofile                " Save undo's after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
