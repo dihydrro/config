@@ -9,6 +9,16 @@
 " install pathogen
 execute pathogen#infect()
 execute pathogen#helptags()
+filetype plugin indent on
+
+" start syntastic plugin conf"
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_c_compiler = 'clang'
+let g:syntastic_c_config_file = $HOME."/.dihy_config/.syntastic_c_config"
 
 let mapleader = ","
 
@@ -25,6 +35,7 @@ nnoremap <leader>s :w<return>
 " start search will typing
 set incsearch
 set hlsearch
+map <C-C> :nohlsearch<return>
 set smartcase
 
 " use <TAB> invoke completion in command line
@@ -46,14 +57,15 @@ nnoremap - ddp
 nnoremap + dd<up>P
 nnoremap "<space> bi"<esc>ea"<esc>l
 nnoremap '<space> bi'<esc>ea'<esc>l
-nnoremap <leader>U bveU<esc>
 nnoremap <leader>u bveu<esc>
+nnoremap <leader>U bveU<esc>
+inoremap <c-u> <esc>bveu<esc>
+inoremap <c-U> <esc>bveU<esc>
 
 inoremap kj <esc>
-inoremap ( ()<esc>i
+inoremap ( ()<left>
 inoremap { {<return>}<esc>O
-inoremap [ []<esc>i
-inoremap < <><esc>i
+inoremap [ []<left>
 inoremap ' ''<esc>i
 inoremap " ""<esc>i
 
@@ -73,6 +85,10 @@ autocmd filetype python :nnoremap <leader>c I#<space><esc>
 " c autocompletion
 autocmd filetype c :imap main<tab> int<tab><tab>main(int ac, char **av<esc>o{
 autocmd filetype c :inoremap ret<tab> return<space>();<left><left>
+
+" html map
+autocmd filetype html :inoremap { {}<left>
+autocmd filetype html :inoremap < <><left>
 
 " deal with tabulation for c file
 autocmd filetype c :set shiftwidth=4
@@ -94,6 +110,7 @@ set ruler
 set cursorline
 set laststatus=2
 set statusline=filename:\ \%F\ %y\ %=\ line\ %l/%L\ column\ %c
+syntax on
 
 set autoindent
 set smartindent
