@@ -9,7 +9,7 @@ alias src="source $DIHY_PATH/.myzshrc"
 
 
 # my ls config
-export PATH="$PATH:$DIHY_PATH/ft_bin"
+export PATH="$PATH:$DIHY_PATH/ft_bin/:/usr/local/go/bin"
 ## my ls aliases
 if [ `uname` = "Linux" ]; then
 	alias fls="ft_ls_linux -G"
@@ -42,6 +42,10 @@ alias glg="git log"
 alias gl="git log --oneline --abbrev-commit --all --graph --decorate --color"
 alias gft="git fetch"
 alias gbr="git branch"
+
+# clipboard alias
+alias pbc="xclip -selection clipboard"
+alias pbp="xclip -selection clipboard -o"
 
 
 # 42 norme alias
@@ -111,3 +115,6 @@ extract () {
 		echo "'$1' is not a valid file"
 	fi
 }
+
+# tmux conf
+[ -z "$TMUX"  ] && exec tmux

@@ -11,14 +11,30 @@ execute pathogen#infect()
 execute pathogen#helptags()
 filetype plugin indent on
 
-" start syntastic plugin conf"
+" config ctrlp
+let g:ctrlp_map = "<m-p>"
+let g:ctrlp_cmd = "CtrlP"
+let g:ctrlp_working_path_mode = "ra"
+
+" config typescript-vim
+let g:typescript_indent_disable = 1
+let g:typescript_compiler_binary = ""
+let g:typescript_compiler_options = ""
+
+let g:syntastic_typescript_checkers = ["tslint"]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_c_compiler = 'clang'
-let g:syntastic_c_config_file = $HOME."/.dihy_config/.syntastic_c_config"
+
+" config tmux
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
+nnoremap <M-h> :TmuxNavigateLeft<return>
+nnoremap <M-j> :TmuxNavigateDown<return>
+nnoremap <M-k> :TmuxNavigateUp<return>
+nnoremap <M-l> :TmuxNavigateRight<return>
+nnoremap <M-\> :TmuxNavigatePrevious<return>
 
 let mapleader = ","
 
@@ -30,12 +46,13 @@ set showcmd
 set title
 
 " to save ctrl-s
-nnoremap <leader>s :w<return>
+nnoremap <M-s> :w<return>
+inoremap <M-s> <esc>:w<return>
 
 " start search will typing
 set incsearch
 set hlsearch
-map <C-C> :nohlsearch<return>
+map <M-c> :nohlsearch<return>
 set smartcase
 
 " use <TAB> invoke completion in command line
@@ -53,21 +70,32 @@ set smarttab
 
 set foldmethod=indent
 
+" copy/paste from/to vim/clipboard
+set clipboard=unnamedplus
+
 nnoremap - ddp
 nnoremap + dd<up>P
-nnoremap "<space> bi"<esc>ea"<esc>l
-nnoremap '<space> bi'<esc>ea'<esc>l
-nnoremap <leader>u bveu<esc>
-nnoremap <leader>U bveU<esc>
-inoremap <c-u> <esc>bveu<esc>
-inoremap <c-U> <esc>bveU<esc>
+nnoremap "<space'> wi"<esc>bi"<esc>l
+nnoremap '<space> wi'<esc>bi'<esc>l
+nnoremap [<space> wi[<esc>bi]<esc>l
+nnoremap <M-u> wbveu<esc>
+nnoremap <M-U> wbveU<esc>
+nnoremap <leader>t I<tab><esc>
 
 inoremap kj <esc>
+
+" next/prev completion binding
+inoremap <M-n> <C-n>
+inoremap <M-p> <C-p>
+" make the current work lower or upper case
+inoremap <M-u> <esc>lwbveu<esc>
+inoremap <M-U> <esc>lwbveU<esc>
+inoremap kj <esc>
 inoremap ( ()<left>
-inoremap { {<return>}<esc>O
+inoremap { {<return>}<esc>O<tab>
 inoremap [ []<left>
-inoremap ' ''<esc>i
-inoremap " ""<esc>i
+inoremap ' ''<left>
+inoremap " ""<left>
 
 " autocompletion
 imap iff<tab> if<space>(
@@ -90,6 +118,10 @@ autocmd filetype c :inoremap ret<tab> return<space>();<left><left>
 autocmd filetype html :inoremap { {}<left>
 autocmd filetype html :inoremap < <><left>
 
+" js/ts map
+autocmd filetype javascript :inoremap { {}<left>
+autocmd filetype typescript :inoremap { {}<left>
+
 " deal with tabulation for c file
 autocmd filetype c :set shiftwidth=4
 autocmd filetype c :set tabstop=4
@@ -110,6 +142,7 @@ set ruler
 set cursorline
 set laststatus=2
 set statusline=filename:\ \%F\ %y\ %=\ line\ %l/%L\ column\ %c
+colorscheme antares
 syntax on
 
 set autoindent
