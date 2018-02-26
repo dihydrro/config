@@ -23,7 +23,7 @@ alias fll="fls -l"
 
 
 # git aliases
-alias gcln="git clone"
+alias gcln="git clone --recursive"
 alias gst="git status"
 alias gdd="git add"
 alias grm="git rm"
