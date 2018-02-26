@@ -21,11 +21,12 @@ let g:typescript_indent_disable = 1
 let g:typescript_compiler_binary = ""
 let g:typescript_compiler_options = ""
 
-let g:syntastic_typescript_checkers = ["tslint"]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 3
+let g:syntastic_typescript_checkers = ["tslint"]
 
 " config tmux
 let g:tmux_navigator_no_mappings = 1
@@ -86,7 +87,7 @@ inoremap kj <esc>
 
 " next/prev completion binding
 inoremap <M-n> <C-n>
-inoremap <M-p> <C-p>
+inoremap <M-b> <C-p>
 " make the current work lower or upper case
 inoremap <M-u> <esc>lwbveu<esc>
 inoremap <M-U> <esc>lwbveU<esc>
@@ -116,7 +117,6 @@ autocmd filetype c :inoremap ret<tab> return<space>();<left><left>
 
 " html map
 autocmd filetype html :inoremap { {}<left>
-autocmd filetype html :inoremap < <><left>
 
 " js/ts map
 autocmd filetype javascript :inoremap { {}<left>

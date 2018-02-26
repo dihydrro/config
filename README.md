@@ -20,6 +20,10 @@ Echo this line into your shell config file:
 
 #### Use my vim config
 
+Copy the vim plugin directory into your home:
+
+    cp -rf $HOME/.dihy_config/.vim $HOME/.vim
+
 Echo this line into your vim config file:
 
     echo ":source $HOME/.dihy_config/.vimrc" >> $HOME/.vimrc
