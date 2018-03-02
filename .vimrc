@@ -14,7 +14,8 @@ filetype plugin indent on
 " config ctrlp
 let g:ctrlp_map = "<m-p>"
 let g:ctrlp_cmd = "CtrlP"
-let g:ctrlp_working_path_mode = "ra"
+let g:ctrlp_working_path_mode = "wra"
+set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*
 
 " config typescript-vim
 let g:typescript_indent_disable = 1
@@ -109,6 +110,7 @@ autocmd filetype c :nnoremap <leader>c I/*<space><esc>$a<space>*/<esc>
 autocmd filetype html :nnoremap <leader>c I<!--<esc>$a--><esc>
 autocmd filetype css :nnoremap <leader>c I/*<space><esc>$a*/<esc>
 autocmd filetype javascript :nnoremap <leader>c I/*<space><esc>$a*/<esc>
+autocmd filetype typescript :nnoremap <leader>c I/*<space><esc>$a*/<esc>
 autocmd filetype python :nnoremap <leader>c I#<space><esc>
 
 " c autocompletion
