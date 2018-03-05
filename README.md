@@ -28,8 +28,14 @@ Echo this line into your vim config file:
 
     echo ":source $HOME/.dihy_config/.vimrc" >> $HOME/.vimrc
 
-### Use tmux conf
+#### Use tmux config
 
 Echo this line into your tmux config file:
 
     echo "source-file $HOME/.dihy_config/.tmux.conf" >> $HOME/.tmux.conf
+
+#### tslint config
+
+If your editor use the tslint linter, you can copy this file into your root working space
+
+    cp $HOME/.dihy_config/tslint.json $HOME/myproject/tslint.json
