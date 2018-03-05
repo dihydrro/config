@@ -1,10 +1,9 @@
 " -----------------------------------------------------------------------
 " -----------------------------------------------------------------------
-"
-"		by Dihydrro
-"
+"  by Dihydrro ----------------------------------------------------------
 " -----------------------------------------------------------------------
 " -----------------------------------------------------------------------
+
 
 " install pathogen
 execute pathogen#infect()
@@ -18,7 +17,6 @@ let g:ctrlp_working_path_mode = "wra"
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*
 
 " config typescript-vim
-let g:typescript_indent_disable = 1
 let g:typescript_compiler_binary = ""
 let g:typescript_compiler_options = ""
 
@@ -37,6 +35,16 @@ nnoremap <M-j> :TmuxNavigateDown<return>
 nnoremap <M-k> :TmuxNavigateUp<return>
 nnoremap <M-l> :TmuxNavigateRight<return>
 nnoremap <M-\> :TmuxNavigatePrevious<return>
+
+nnoremap <M-v> :vsplit<return>
+nnoremap <M-V> :split<return>
+nnoremap <M-q> :q<return>
+nnoremap <M-H> :TmuxResizeLeft<return>
+nnoremap <M-J> :TmuxResizeDown<return>
+nnoremap <M-K> :TmuxResizeUp<return>
+nnoremap <M-L> :TmuxResizeRight<return>
+nnoremap <M-=> <C-w>=
+
 
 let mapleader = ","
 
@@ -79,19 +87,18 @@ nnoremap - ddp
 nnoremap + dd<up>P
 nnoremap "<space'> wi"<esc>bi"<esc>l
 nnoremap '<space> wi'<esc>bi'<esc>l
-nnoremap [<space> wi[<esc>bi]<esc>l
+nnoremap [<space> wi]<esc>bi[<esc>l
 nnoremap <M-u> wbveu<esc>
 nnoremap <M-U> wbveU<esc>
-nnoremap <leader>t I<tab><esc>
-
-inoremap kj <esc>
 
 " next/prev completion binding
 inoremap <M-n> <C-n>
 inoremap <M-b> <C-p>
-" make the current work lower or upper case
+
+" make the current word lower or upper case
 inoremap <M-u> <esc>lwbveu<esc>
 inoremap <M-U> <esc>lwbveU<esc>
+
 inoremap kj <esc>
 inoremap ( ()<left>
 inoremap { {<return>}<esc>O<tab>

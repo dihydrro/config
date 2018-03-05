@@ -113,6 +113,42 @@ function! s:VimNavigate(direction)
   endtry
 endfunction
 
+function! s:TmuxAwareResize(direction)
+  let exec_resize = 0
+  let nr = winnr()
+  execute 'wincmd ' . tr(a:direction, 'hjkl', 'ljjl')
+  let same_window = (nr == winnr())
+  if same_window
+    execute 'wincmd ' . tr(a:direction, 'hjkl', 'hkkh')
+    let same_window = (nr == winnr())
+    if same_window
+      let args = 'resize-pane -t ' . shellescape($TMUX_PANE) . ' -' . tr(a:direction, 'hjkl', 'LDUR')
+      silent call s:TmuxCommand(args)
+    else
+      let exec_resize = 1
+      let real_direction = tr(a:direction, 'hjkl', '-+-+')
+    endif
+  else
+    let exec_resize = 1
+    let real_direction = tr(a:direction, 'hjkl', '+-+-')
+  endif
+  if exec_resize
+    if (a:direction == 'h') || (a:direction == 'l')
+      execute 'vertical res ' . real_direction . '2'
+    else
+      execute 'res ' . real_direction . '2'
+    endif
+  endif
+  if s:NeedsVitalityRedraw()
+    redraw!
+  endif
+endfunction
+
+command! TmuxResizeLeft call s:TmuxAwareResize('h')
+command! TmuxResizeDown call s:TmuxAwareResize('j')
+command! TmuxResizeUp call s:TmuxAwareResize('k')
+command! TmuxResizeRight call s:TmuxAwareResize('l')
+
 command! TmuxNavigateLeft call s:TmuxWinCmd('h')
 command! TmuxNavigateDown call s:TmuxWinCmd('j')
 command! TmuxNavigateUp call s:TmuxWinCmd('k')
@@ -120,9 +156,9 @@ command! TmuxNavigateRight call s:TmuxWinCmd('l')
 command! TmuxNavigatePrevious call s:TmuxWinCmd('p')
 
 if s:UseTmuxNavigatorMappings()
-  "nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-  "nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-  "nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-  "nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-  "nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+  nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+  nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+  nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+  nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 endif
