@@ -1,0 +1,4 @@
+[submodule ".vim/bundle/vim-tmux-navigator"]
+	path = .vim/bundle/vim-tmux-navigator
+	url = https://github.com/dihydrro/vim-tmux-navigator
+	branch = master
