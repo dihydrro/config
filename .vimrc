@@ -56,8 +56,8 @@ set showcmd
 set title
 
 " to save ctrl-s
-nnoremap <M-s> :w<return>
-inoremap <M-s> <esc>:w<return>
+nnoremap <M-w> :w<return>
+inoremap <M-w> <esc>:w<return>
 
 " start search will typing
 set incsearch
