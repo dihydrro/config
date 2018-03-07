@@ -12,7 +12,7 @@ Install with your packet manager:
 
 Download the configuration directory:
 
-    git clone https://github.com/dihydrro/config $HOME/.dihy_config
+    git clone --recursive https://github.com/dihydrro/config $HOME/.dihy_config
 
 Echo this line into your shell config file:
 
@@ -35,6 +35,13 @@ Echo this line into your tmux config file:
     echo "source-file $HOME/.dihy_config/.tmux.conf" >> $HOME/.tmux.conf
 
 #### tslint config
+
+###### Requirements
+
+    node
+    npm
+    tslint
+    typescript
 
 If your editor use the tslint linter, you can copy this file into your root working space
 
