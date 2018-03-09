@@ -4,11 +4,35 @@
 " -----------------------------------------------------------------------
 " -----------------------------------------------------------------------
 
-
 " install pathogen
 execute pathogen#infect()
 execute pathogen#helptags()
 filetype plugin indent on
+
+" If you are using vim you may need this to use <M-...>"
+if stridx($VIM, '/vim') != -1
+  let g:pathogen_blacklist = ['vim-markdown-composer']
+  set <M-p>=p
+  set <M-h>=h
+  set <M-j>=j
+  set <M-k>=k
+  set <M-l>=l
+  set <M-\>=\
+  set <M-H>=H
+  set <M-J>=J
+  set <M-K>=K
+  set <M-L>=L
+  set <M-v>=v
+  set <M-V>=V
+  set <M-q>=q
+  set <M-=>==
+  set <M-w>=w
+  set <M-c>=c
+  set <M-u>=u
+  set <M-U>=U
+  set <M-n>=n
+  set <M-b>=b
+endif
 
 " config ctrlp
 let g:ctrlp_map = "<m-p>"
