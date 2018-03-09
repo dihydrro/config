@@ -116,5 +116,7 @@ extract () {
 	fi
 }
 
+alias tmux="TERM=screen-256color tmux"
+
 # tmux conf
-[ -z "$TMUX"  ] && exec tmux
+[ -z "$TMUX"  ] && exec tmux -2
