@@ -15,6 +15,8 @@
 #### Requirements
 
   * xorg
+  * xinit
+  * xautolock
   * xterm
   * i3-wm
   * i3lock
@@ -29,7 +31,7 @@
 
     ```
     if [[ $ENABLE_SERVER_X && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-      exec startx
+      exec startx -- vt1 &> /dev/null
     fi
     ```
 
