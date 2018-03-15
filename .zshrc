@@ -1,11 +1,37 @@
-# myzshrc aliases
-
+# myzshrc
 DIHY_PATH="$HOME/.dihy_config"
 
+export HISTFILE=$HOME/.zsh_history
+export SAVEHIST=1000
+export HISTSIZE=100
+
+setopt RM_STAR_WAIT
+
+# completion
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Enable mode VI and some emacs key
+bindkey -v
+bindkey '^w' backward-kill-word
+bindkey '^u' backward-kill-line
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^[[3~' delete-char
+
+# history
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+[[ -n "$key[Up]" ]] && bindkey -- "$key[Up]" up-line-or-beginning-search
+[[ -n "$key[Down]" ]] && bindkey -- "key[Down]" down-line-or-beginning-search
+
+
 ## open myzshrc
-alias config="vim $DIHY_PATH/.myzshrc"
+alias config="vim $DIHY_PATH/.zshrc"
 ## update myzshrc change
-alias src="source $DIHY_PATH/.myzshrc"
+alias src="source $DIHY_PATH/.zshrc"
 
 
 # my ls config
@@ -42,6 +68,8 @@ alias glg="git log"
 alias gl="git log --oneline --abbrev-commit --all --graph --decorate --color"
 alias gft="git fetch"
 alias gbr="git branch"
+alias gsmuir="git submodule update --init --recursive"
+
 
 # clipboard alias
 alias pbc="xclip -selection clipboard"
@@ -56,40 +84,42 @@ alias norme="norminette **/*.[ch] | grep -v 'Norme' -B1"
 alias dcmp="docker-compose"
 
 
+#alias i3lock
+alias i3l="i3lock -c eb4242 -e -f"
+
+
 # prompt config
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
-
 setopt prompt_subst
 
 function prompt_dihydrro_precmd {
-	vcs_info
+  vcs_info
 }
 
 function prompt_dihydrro_setup {
-	setopt LOCAL_OPTIONS
-		unsetopt XTRACE KSH_ARRAYS
-		prompt_opts=(cr percent sp subst)
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent sp subst)
 
-# Load required functions.
-		autoload -Uz add-zsh-hook
-		autoload -Uz vcs_info
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
 
-# Add hook for calling vcs_info before each command.
-		add-zsh-hook precmd prompt_dihydrro_precmd
+  # Add hook for calling vcs_info before each command.
+  add-zsh-hook precmd prompt_dihydrro_precmd
 
-# Set vcs_info parameters.
-		zstyle ':vcs_info:*' enable bzr git hg svn
-		zstyle ':vcs_info:*' check-for-changes true
-		zstyle ':vcs_info:*' formats ' - %F{green}[%b%F{green}]%f'
+  # Set vcs_info parameters.
+  zstyle ':vcs_info:*' enable bzr git hg svn
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' formats ' - %F{green}[%b%F{green}]%f'
 
-# Define prompts.
-		PROMPT='%F{red}%n@%m%f %F{yellow}%~%f${vcs_info_msg_0_} %# '
-		RPROMPT='%F{red}%T%f %F{yellow}-%f %F{green}(%?)%f'
+  # Define prompts.
+  PROMPT='%F{red}%n@%m%f %F{yellow}%~%f${vcs_info_msg_0_} %# '
+  RPROMPT='%F{red}%T%f %F{yellow}-%f %F{green}(%?)%f'
 }
 
 prompt_dihydrro_setup "$@"
-
 
 
 # extract function
@@ -116,7 +146,7 @@ extract () {
 	fi
 }
 
-alias tmux="TERM=screen-256color tmux"
 
 # tmux conf
+alias tmux="TERM=screen-256color tmux"
 [ -z "$TMUX"  ] && exec tmux -2

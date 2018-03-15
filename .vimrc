@@ -4,6 +4,9 @@
 " -----------------------------------------------------------------------
 " -----------------------------------------------------------------------
 
+" comment this line to enable vim-markdown-composer
+let g:pathogen_blacklist = ['vim-markdown-composer']
+
 " install pathogen
 execute pathogen#infect()
 execute pathogen#helptags()
@@ -11,7 +14,6 @@ filetype plugin indent on
 
 " If you are using vim you may need this to use <M-...>"
 if stridx($VIM, '/vim') != -1
-  let g:pathogen_blacklist = ['vim-markdown-composer']
   set <M-p>=p
   set <M-h>=h
   set <M-j>=j

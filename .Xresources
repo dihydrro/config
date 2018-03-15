@@ -1,0 +1,6 @@
+*locale: true
+*metaSendsEscape: true
+*background: black
+*foreground: white
+
+XTerm*selectToClipboard: true
