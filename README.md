@@ -73,6 +73,12 @@ look for `tmux conf` and comment the lines behind.
 
     `echo ":source $HOME/.dihy_config/.vimrc" >> $HOME/.vimrc`
 
+if you want to bind the unnamedplus register into your clipboard you need a vim version with +clipboard.
+
+    `vim --version | grep clipboard`
+
+to see if available, an easy way of getting it if it's not is to install `gvim`
+
 if you wan't to use the js|ts linter you need to install this:
 
     `npm install [--global|--save|--save-dev] tslint typescript`
