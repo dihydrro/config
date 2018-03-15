@@ -1,48 +1,80 @@
 # Dihydrro conifg
 
-## Requirments
+## Download
 
-Install with your packet manager:
+#### Requirement
 
-    git
-    tmux
-    nvim
+  * git
 
-## Install my config
+#### Execute
 
-Download the configuration directory:
+    `git clone --recursive https://github.com/dihydrro/config $HOME/.dihy_config`
 
-    git clone --recursive https://github.com/dihydrro/config $HOME/.dihy_config
+## Window Manager
 
-Echo this line into your shell config file:
+#### Requirements
 
-    echo "source $HOME/.dihy_config/.myzshrc" >> $HOME/.zshrc
+  * xorg
+  * xterm
+  * i3-wm
+  * i3lock
 
-#### Use my vim config
+#### Execute
 
-Copy the vim plugin directory into your home:
+    `cp $HOME/.dihy_config/.xinitrc $HOME/.dihy_config/.Xresources $HOME/`
 
-    cp -rf $HOME/.dihy_config/.vim $HOME/.vim
+    `cp -rf $HOME/.dihy_config/.i3 $HOME/.i3`
 
-Echo this line into your vim config file:
+  Put this lines into your shell rc (eg: .zshrc, .bashrc, ...)
 
-    echo ":source $HOME/.dihy_config/.vimrc" >> $HOME/.vimrc
+    ```
+    if [[ $ENABLE_SERVER_X && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+      exec startx
+    fi
+    ```
 
-#### Use tmux config
+## Shell
 
-Echo this line into your tmux config file:
+### Zsh
 
-    echo "source-file $HOME/.dihy_config/.tmux.conf" >> $HOME/.tmux.conf
+#### Requirements
 
-#### tslint config
+  * zsh
+  * xclip (to use pbp and pbc to [in|out]put from|to clipboard)
+  * tmux (if you want to use the terminal multiplexer)
 
-###### Requirements
+#### Execute
 
-    node
-    npm
-    tslint
-    typescript
+    `echo "source $HOME/.dihy_config/.zshrc" >> $HOME/.zshrc`
 
-If your editor use the tslint linter, you can copy this file into your root working space
+    `echo "source-file $HOME/.dihy_config/.tmux.conf" >> $HOME/.tmux.conf`
 
-    cp $HOME/.dihy_config/tslint.json $HOME/myproject/tslint.json
+WARN: if you don't want to use tmux don't use last command and go into `$HOME/.dihy_config/.zshrc`
+look for `tmux conf` and comment the lines behind.
+
+## Editor
+
+### Vim
+
+#### Requirements
+
+  * vim
+
+##### Special requirements for javascript|typescript linter
+
+  * node
+  * npm
+
+#### Execute
+
+    `cp -rf $HOME/.dihy_config/.vim $HOME/.vim`
+
+    `echo ":source $HOME/.dihy_config/.vimrc" >> $HOME/.vimrc`
+
+if you wan't to use the js|ts linter you need to install this:
+
+    `npm install [--global|--save|--save-dev] tslint typescript`
+
+### Others
+
+you still can use the tslint.json file if your editor is configured to use the tslint linter.
