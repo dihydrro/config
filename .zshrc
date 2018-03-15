@@ -5,12 +5,12 @@ export HISTFILE=$HOME/.zsh_history
 export SAVEHIST=1000
 export HISTSIZE=100
 
+setopt RM_STAR_WAIT
+
 # completion
 autoload -Uz compinit
 compinit
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' menu select
-setopt COMPLETE_ALIASES
-setopt MENU_COMPLETE
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Enable mode VI and some emacs key
 bindkey -v
@@ -18,6 +18,7 @@ bindkey '^w' backward-kill-word
 bindkey '^u' backward-kill-line
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+bindkey '^[[3~' delete-char
 
 # history
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
@@ -67,7 +68,7 @@ alias glg="git log"
 alias gl="git log --oneline --abbrev-commit --all --graph --decorate --color"
 alias gft="git fetch"
 alias gbr="git branch"
-alias gsbuir="git submodule update --init --recursive"
+alias gsmuir="git submodule update --init --recursive"
 
 
 # clipboard alias
