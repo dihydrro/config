@@ -111,7 +111,7 @@ set clipboard=unnamedplus
 
 nnoremap - ddp
 nnoremap + dd<up>P
-nnoremap "<space'> wi"<esc>bi"<esc>l
+nnoremap "<space> wi"<esc>bi"<esc>l
 nnoremap '<space> wi'<esc>bi'<esc>l
 nnoremap [<space> wi]<esc>bi[<esc>l
 nnoremap <M-u> wbveu<esc>
