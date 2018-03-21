@@ -117,6 +117,8 @@ nnoremap [<space> wi]<esc>bi[<esc>l
 nnoremap <M-u> wbveu<esc>
 nnoremap <M-U> wbveU<esc>
 
+vnoremap kj <esc>
+
 " next/prev completion binding
 inoremap <M-n> <C-n>
 inoremap <M-b> <C-p>
