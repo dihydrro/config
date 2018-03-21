@@ -12,12 +12,7 @@ autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# Enable mode VI and some emacs key
-bindkey -v
-bindkey '^w' backward-kill-word
-bindkey '^u' backward-kill-line
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
+bindkey -e
 bindkey '^[[3~' delete-char
 
 # history
