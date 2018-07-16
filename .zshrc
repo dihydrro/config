@@ -22,6 +22,10 @@ zle -N down-line-or-beginning-search
 [[ -n "$key[Up]" ]] && bindkey -- "$key[Up]" up-line-or-beginning-search
 [[ -n "$key[Down]" ]] && bindkey -- "key[Down]" down-line-or-beginning-search
 
+# shutdown command
+alias reboot="sudo systemctl reboot"
+alias poweroff="sudo systemctl poweroff"
+alias halt="sudo systemctl halt"
 
 ## open myzshrc
 alias config="vim $DIHY_PATH/.zshrc"
@@ -139,6 +143,22 @@ extract () {
 	else
 		echo "'$1' is not a valid file"
 	fi
+}
+
+# wifico function
+## wifico *wifiname*
+## will use wifiname, prompt for password and connect to the wifi
+wifico () {
+  if [ $# -eq 0 ] ; then
+    echo "A wifi SSID is required, see list below"
+    nmcli device wifi list
+  else
+    echo "Wifi password:"
+    stty -echo
+    read password
+    stty echo
+    sudo nmcli device wifi connect $1 password $password
+  fi
 }
 
 
