@@ -52,6 +52,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height = 3
 let g:syntastic_typescript_checkers = ["tslint"]
+let g:syntastic_javascript_checkers = ["tslint"]
 
 " config tmux
 let g:tmux_navigator_no_mappings = 1
@@ -127,7 +128,7 @@ inoremap <M-U> <esc>lwbveU<esc>
 
 inoremap kj <esc>
 inoremap ( ()<left>
-inoremap { {<return>}<esc>O<tab>
+inoremap { {}<left>
 inoremap [ []<left>
 inoremap ' ''<left>
 inoremap " ""<left>
@@ -147,15 +148,9 @@ autocmd filetype typescript :nnoremap <leader>c I/*<space><esc>$a*/<esc>
 autocmd filetype python :nnoremap <leader>c I#<space><esc>
 
 " c autocompletion
+autocmd filetype c :inoremap { {<return>}<esc>O
 autocmd filetype c :imap main<tab> int<tab><tab>main(int ac, char **av<esc>o{
 autocmd filetype c :inoremap ret<tab> return<space>();<left><left>
-
-" html map
-autocmd filetype html :inoremap { {}<left>
-
-" js/ts map
-autocmd filetype javascript :inoremap { {}<left>
-autocmd filetype typescript :inoremap { {}<left>
 
 " deal with tabulation for c file
 autocmd filetype c :set shiftwidth=4
