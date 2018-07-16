@@ -38,6 +38,11 @@ fi
 
 SHELL="/bin/zsh"
 
-xautolock -timer 42 -locker "i3lock -c eb4242 -e -f"
+session=${1:-i3}
 
-exec i3 -V >> ~/.local/share/i3/log/i3-logfile.txt 2>&1
+case $session in
+    i3  ) xautolock -timer 42 -locker "i3lock -c eb4242 -e -f"; \
+            mkdir -p ~/.local/share/i3/log; \
+            exec i3 -V >> ~/.local/share/i3/log/i3.log 2>&1;;
+    kde ) exec startkde;;
+esac
